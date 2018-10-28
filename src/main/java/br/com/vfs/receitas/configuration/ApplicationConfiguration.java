@@ -6,6 +6,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "br.com.vfs.receitas.controller")
+@ComponentScan(basePackages = "br.com.vfs.receitas")
 public class ApplicationConfiguration {
 }
