@@ -1,12 +1,12 @@
 package br.com.vfs.receitas.service.impl;
 
+import br.com.vfs.receitas.dao.ReceitaDao;
 import br.com.vfs.receitas.model.entity.Receita;
 import br.com.vfs.receitas.service.ReceitaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -15,26 +15,26 @@ import java.util.List;
 @Service("receitaService")
 public class ReceitaServiceImpl implements ReceitaService {
 
+    @Autowired
+    private ReceitaDao receitaDao;
+
+    @Transactional
     public List<Receita> listarReceitas() {
-        List<Receita> receitas = new ArrayList();
-        Receita receita = new Receita();
-        receita.setId(1);
-        receita.setDescricao("primeira receita");
-        receita.setValor(new BigDecimal("1000.43"));
-        receita.setVencimento(Calendar.getInstance().getTime());
-        receitas.add(receita);
-        return receitas;
+        return receitaDao.listarTodos();
     }
 
+    @Transactional
     public void adicionarReceita(Receita receita) {
-
+        receitaDao.incluir(receita);
     }
 
+    @Transactional
     public void alterarReceita(Receita receita) {
-
+        receitaDao.alterar(receita);
     }
 
+    @Transactional
     public void excluirReceita(Integer id) {
-
+        receitaDao.excluir(id);
     }
 }

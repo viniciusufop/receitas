@@ -1,12 +1,11 @@
 package br.com.vfs.receitas.model.request;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class ReceitaRequest {
 
     private String descricao;
-    private Date vencimento;
+    private String vencimento;
     private BigDecimal valor;
 
     public String getDescricao() {
@@ -17,11 +16,11 @@ public class ReceitaRequest {
         this.descricao = descricao;
     }
 
-    public Date getVencimento() {
+    public String getVencimento() {
         return vencimento;
     }
 
-    public void setVencimento(Date vencimento) {
+    public void setVencimento(String vencimento) {
         this.vencimento = vencimento;
     }
 

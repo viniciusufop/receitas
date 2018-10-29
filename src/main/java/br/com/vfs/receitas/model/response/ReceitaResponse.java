@@ -1,13 +1,12 @@
 package br.com.vfs.receitas.model.response;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class ReceitaResponse {
 
     private Integer id;
     private String descricao;
-    private Date vencimento;
+    private String vencimento;
     private BigDecimal valor;
 
     public Integer getId() {
@@ -26,11 +25,11 @@ public class ReceitaResponse {
         this.descricao = descricao;
     }
 
-    public Date getVencimento() {
+    public String getVencimento() {
         return vencimento;
     }
 
-    public void setVencimento(Date vencimento) {
+    public void setVencimento(String vencimento) {
         this.vencimento = vencimento;
     }
 

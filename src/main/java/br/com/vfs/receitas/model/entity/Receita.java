@@ -1,12 +1,23 @@
 package br.com.vfs.receitas.model.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+@Entity
+@Table(name = "receita")
+public class Receita extends EntityBase {
 
-public class Receita {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "descricao", nullable = false)
     private String descricao;
+
+    @Column(name = "vencimento", nullable = false)
     private Date vencimento;
+
+    @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
     public Integer getId() {
