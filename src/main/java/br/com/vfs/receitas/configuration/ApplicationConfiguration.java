@@ -32,10 +32,10 @@ public class ApplicationConfiguration {
 
         Properties props = new Properties();
         // Setting JDBC properties
-        props.put(DRIVER, env.getProperty("mysql.driver"));
-        props.put(URL, env.getProperty("mysql.url"));
-        props.put(USER, env.getProperty("mysql.user"));
-        props.put(PASS, env.getProperty("mysql.password"));
+        props.put(DRIVER, env.getProperty("postgresql.driver"));
+        props.put(URL, env.getProperty("postgresql.url"));
+        props.put(USER, env.getProperty("postgresql.user"));
+        props.put(PASS, env.getProperty("postgresql.password"));
 
         // Setting Hibernate properties
         props.put(SHOW_SQL, env.getProperty("hibernate.show_sql"));
