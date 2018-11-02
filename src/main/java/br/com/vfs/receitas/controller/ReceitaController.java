@@ -15,37 +15,45 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController()
 @RequestMapping("/v1/receitas")
 public class ReceitaController {
 
     @Autowired
     private ReceitaService receitaService;
-
+    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     @GetMapping(produces = "application/json")
     public ResponseEntity<ReceitaResponse> findAll(){
         List<Receita> receitas = receitaService.listarReceitas();
         return new ResponseEntity(converterReceitasParaReceitasResponse(receitas), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/{id}",produces = "application/json")
+    public ResponseEntity<ReceitaResponse> findById(@PathVariable("id") Integer id){
+        Receita receita = receitaService.obterReceita(id);
+        return new ResponseEntity<ReceitaResponse>(converterReceitaParaReceitaResponse(receita), HttpStatus.OK);
+    }
+
     private List<ReceitaResponse> converterReceitasParaReceitasResponse(List<Receita> receitas) {
         List<ReceitaResponse> receitaResponses = new ArrayList<ReceitaResponse>();
         if(receitas != null && !receitas.isEmpty()){
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             for (Receita receita : receitas){
-                ReceitaResponse receitaResponse = new ReceitaResponse();
-                receitaResponse.setId(receita.getId());
-                receitaResponse.setDescricao(receita.getDescricao());
-                receitaResponse.setVencimento(dateFormat.format(receita.getVencimento()));
-                receitaResponse.setValor(receita.getValor());
-                receitaResponses.add(receitaResponse);
+                receitaResponses.add(converterReceitaParaReceitaResponse(receita));
             }
         }
         return receitaResponses;
     }
 
-    @PostMapping(consumes = "application/json")
+    private ReceitaResponse converterReceitaParaReceitaResponse(Receita receita){
+        ReceitaResponse receitaResponse = new ReceitaResponse();
+        receitaResponse.setId(receita.getId());
+        receitaResponse.setDescricao(receita.getDescricao());
+        receitaResponse.setVencimento(dateFormat.format(receita.getVencimento()));
+        receitaResponse.setValor(receita.getValor());
+        return receitaResponse;
+    }
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity insert(@RequestBody ReceitaRequest receitaRequest){
         Receita receita = new Receita();
         receita.setDescricao(receitaRequest.getDescricao());
@@ -60,7 +68,7 @@ public class ReceitaController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}", consumes = "application/json")
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
     public ResponseEntity update(@PathVariable("id") Integer id, @RequestBody Receita receita){
         //TUDO alterar para enviar o id tbm
         receitaService.alterarReceita(receita);

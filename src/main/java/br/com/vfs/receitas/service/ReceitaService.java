@@ -33,4 +33,9 @@ public interface ReceitaService {
      */
     void excluirReceita(Integer id);
 
+    /**
+     * metodo que obtem uma receita cadastra
+     * @param id
+     */
+    Receita obterReceita(Integer id);
 }

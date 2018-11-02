@@ -21,7 +21,7 @@ public abstract class AbstractDaoImpl<Entidade extends EntityBase, Chave extends
     protected abstract Class<Entidade> getEntity();
 
     public Entidade obter(Chave chave) {
-        return sessionFactory.getCurrentSession().load(getEntity(), chave);
+        return sessionFactory.getCurrentSession().get(getEntity(), chave);
     }
 
     public void incluir(Entidade entidade) {

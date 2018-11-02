@@ -37,4 +37,9 @@ public class ReceitaServiceImpl implements ReceitaService {
     public void excluirReceita(Integer id) {
         receitaDao.excluir(id);
     }
+
+    @Transactional
+    public Receita obterReceita(Integer id) {
+        return receitaDao.obter(id);
+    }
 }
