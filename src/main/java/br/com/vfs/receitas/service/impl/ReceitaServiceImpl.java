@@ -29,8 +29,12 @@ public class ReceitaServiceImpl implements ReceitaService {
     }
 
     @Transactional
-    public void alterarReceita(Receita receita) {
-        receitaDao.alterar(receita);
+    public void alterarReceita(Integer id, Receita receita) {
+        Receita receitaEntity = obterReceita(id);
+        receitaEntity.setDescricao(receita.getDescricao());
+        receitaEntity.setVencimento(receita.getVencimento());
+        receitaEntity.setValor(receita.getValor());
+        receitaDao.alterar(receitaEntity);
     }
 
     @Transactional

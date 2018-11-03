@@ -23,9 +23,10 @@ public interface ReceitaService {
 
     /**
      * metodo que altera uma receita ja cadastrada
+     * @param id
      * @param receita
      */
-    void alterarReceita(Receita receita);
+    void alterarReceita(Integer id, Receita receita);
 
     /**
      * metodo que exclui uma receita cadastra
