@@ -1,6 +1,7 @@
 package br.com.vfs.receitas.dao;
 
 import br.com.vfs.receitas.model.entity.EntityBase;
+import br.com.vfs.receitas.model.enums.OrderEnum;
 
 import java.io.Serializable;
 import java.util.List;

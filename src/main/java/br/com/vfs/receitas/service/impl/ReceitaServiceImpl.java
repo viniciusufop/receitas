@@ -20,7 +20,7 @@ public class ReceitaServiceImpl implements ReceitaService {
 
     @Transactional
     public List<Receita> listarReceitas() {
-        return receitaDao.listarTodos();
+        return receitaDao.listarTodosOrdenadoPorDataAsc();
     }
 
     @Transactional

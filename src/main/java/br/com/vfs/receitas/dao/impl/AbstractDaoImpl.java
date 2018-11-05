@@ -2,6 +2,7 @@ package br.com.vfs.receitas.dao.impl;
 
 import br.com.vfs.receitas.dao.Dao;
 import br.com.vfs.receitas.model.entity.EntityBase;
+import br.com.vfs.receitas.model.enums.OrderEnum;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,5 +40,15 @@ public abstract class AbstractDaoImpl<Entidade extends EntityBase, Chave extends
 
     public List<Entidade> listarTodos() {
         return sessionFactory.getCurrentSession().createQuery("FROM "+getEntity().getSimpleName()).list();
+    }
+
+    /**
+     * Listas todos os elementos ordenados por um campo
+     * @param field
+     * @param orderEnum
+     * @return
+     */
+    protected List<Entidade> listarTodosOrdernado(String field, OrderEnum orderEnum) {
+        return sessionFactory.getCurrentSession().createQuery(String.format("FROM %s ORDER BY %s %s", getEntity().getSimpleName(), field, orderEnum.name())).list();
     }
 }
